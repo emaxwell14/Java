@@ -28,7 +28,6 @@ public class HelloController {
 		model.setViewName("admin");
 
 		return model;
-
 	}
 
 }

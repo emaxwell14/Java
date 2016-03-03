@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+	public static final String USERNAME = "userName";
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "rid")

@@ -1,10 +1,11 @@
 package com.emaxwell.spring.service;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,34 +19,66 @@ import com.emaxwell.domain.User;
  *
  */
 @Service
-@Transactional
+
 public class UserDAOImpl implements IUserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
+	/**
+	 * Get a user by its user name
+	 */
+	@Transactional
 	public User getUserByUserName(String userName) {
-		// TODO update to use objects
 		Session session = sessionFactory.getCurrentSession();
 		User user = null;
 		try{
-			user = (User) session.createQuery("FROM User where userName=?")
-			.setParameter(0, userName)
-			.uniqueResult();
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq(User.USERNAME, userName));
+			user = (User) criteria.uniqueResult();
 	     }catch (HibernateException e) {
 	         e.printStackTrace(); 
-	      }finally {
-	       //  session.close(); 
-	      }
+	     }
 		return user;
-/*	
-		return (User) this.sessionFactory.getCurrentSession()
-				.createQuery("FROM User where userName=?")
-				.setParameter(0, userName)
-				.uniqueResult();
-*/
 	}
-
+	
+	/**
+	 * Get a user by its id
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	@Transactional
+	public User getUser(int userId) {
+		Session session = sessionFactory.getCurrentSession();
+		User user = null;
+		try{
+			user = (User) session.get(User.class, userId);
+		} catch (HibernateException e){
+			e.printStackTrace(); 
+		}
+		return user;
+	}
+	
+	
+	/**
+	 * Add a user
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	@Transactional
+	public int saveUser(User user) {
+		Session session = sessionFactory.getCurrentSession();
+		int userId = 0;
+		try{
+			userId = (Integer) session.save(user);
+		} catch (HibernateException e){
+			e.printStackTrace(); 
+		}
+		return userId;
+	}
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
