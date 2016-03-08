@@ -8,8 +8,12 @@
 	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
 
-	<http use-expressions="false">
-		<intercept-url pattern="/admin**" access="ROLE_USER" />
+	<http use-expressions="true">
+		<intercept-url pattern="/admin**" access="hasAuthority('admin')" />
+<!-- 		<intercept-url pattern="/**" access="hasAuthority('admin')" />  -->
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/index" access="permitAll" />
+		
 		
 		<!--  login-page="/login" -->
 		<form-login 
@@ -18,6 +22,8 @@
 			authentication-failure-url="/login?login_error" 
 			username-parameter="username"
 			password-parameter="password" />
+			
+		<logout invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
 		
 	</http>
 

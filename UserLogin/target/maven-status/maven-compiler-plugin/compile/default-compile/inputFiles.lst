@@ -1,12 +1,10 @@
-C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\dao\impl\package-info.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\dao\impl\UserDAOImpl.java
-C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\service\impl\package-info.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\domain\User.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\controller\HelloController.java
-C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\dao\package-info.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\service\IUserService.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\util\UserTestUtil.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\dao\IUserDAO.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\service\impl\UserServiceImpl.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\security\CustomUserDetailsService.java
+C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\domain\Role.java
 C:\Users\User\Documents\GitHub\Java\UserLogin\src\com\emaxwell\spring\controller\UserController.java

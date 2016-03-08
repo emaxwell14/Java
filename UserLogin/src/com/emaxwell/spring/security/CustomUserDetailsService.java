@@ -2,6 +2,8 @@ package com.emaxwell.spring.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.emaxwell.domain.Role;
 import com.emaxwell.spring.service.IUserService;
 
 //@Transactional(readOnly=true)
@@ -21,6 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	public IUserService userService;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 /*
@@ -35,16 +39,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		// Get roles
 		Collection<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-		String role = "ROLE_USER";
-		roles.add(new SimpleGrantedAuthority(role));
+		
+		roles = (Collection<GrantedAuthority>) getAuthorities(user.getRoles());
 		
 		return new User(user.getUserName(), user.getPassword(), roles);
 	}
-/*
+
 	public List<String> getRolesAsList(Set<Role> roles) {
 		List<String> rolesAsList = new ArrayList<String>();
 		for (Role role : roles) {
-			rolesAsList.add(role.getName());
+			rolesAsList.add(role.getDescription());
 		}
 		return rolesAsList;
 	}
@@ -61,6 +65,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 		List<GrantedAuthority> authList = getGrantedAuthorities(getRolesAsList(roles));
 		return authList;
 	}
-*/
+
 
 }
