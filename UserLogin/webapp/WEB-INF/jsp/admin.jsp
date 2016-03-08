@@ -16,8 +16,6 @@
 	
 	<a href="${pageContext.request.contextPath}/addUser" > Add User Page</a>
 	
-	|
-	
 	<a href="${pageContext.request.contextPath}/login" > Logout</a>
 </body>
 </html>

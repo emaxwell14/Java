@@ -9,6 +9,6 @@
 <body>
 <h1>User Created</h1>
 
-<a href="<c:url value="${pageContext.request.contextPath}/admin" />" >Admin Page</a></h2>
+<a href="${pageContext.request.contextPath}/admin">Admin Page</a></h2>
 </body>
 </html>

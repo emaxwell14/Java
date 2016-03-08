@@ -1,4 +1,4 @@
-package com.emaxwell.spring.service;
+package com.emaxwell.spring.dao;
 
 import com.emaxwell.domain.User;
 

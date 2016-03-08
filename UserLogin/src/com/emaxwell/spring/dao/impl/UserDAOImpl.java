@@ -1,5 +1,7 @@
-package com.emaxwell.spring.service;
+package com.emaxwell.spring.dao.impl;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -7,9 +9,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.emaxwell.domain.User;
+import com.emaxwell.spring.dao.IUserDAO;
 
 /**
  * @Transactional means that session and transactions are handled by spring
@@ -19,16 +21,17 @@ import com.emaxwell.domain.User;
  *
  */
 @Service
-
 public class UserDAOImpl implements IUserDAO {
 
+	Log log = LogFactory.getLog(this.getClass());
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 	/**
 	 * Get a user by its user name
 	 */
-	@Transactional
+	@Override
 	public User getUserByUserName(String userName) {
 		Session session = sessionFactory.getCurrentSession();
 		User user = null;
@@ -37,7 +40,8 @@ public class UserDAOImpl implements IUserDAO {
 			criteria.add(Restrictions.eq(User.USERNAME, userName));
 			user = (User) criteria.uniqueResult();
 	     }catch (HibernateException e) {
-	         e.printStackTrace(); 
+	    	 log.error("Failed to set user by username. " + e);
+	     } finally {
 	     }
 		return user;
 	}
@@ -48,15 +52,16 @@ public class UserDAOImpl implements IUserDAO {
 	 * @param userId
 	 * @return
 	 */
-	@Transactional
+	@Override
 	public User getUser(int userId) {
 		Session session = sessionFactory.getCurrentSession();
 		User user = null;
 		try{
 			user = (User) session.get(User.class, userId);
 		} catch (HibernateException e){
-			e.printStackTrace(); 
-		}
+			 log.error("Failed to set user by id. " + e);
+		} finally {
+	    }
 		return user;
 	}
 	
@@ -67,15 +72,16 @@ public class UserDAOImpl implements IUserDAO {
 	 * @param userId
 	 * @return
 	 */
-	@Transactional
+	@Override
 	public int saveUser(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		int userId = 0;
 		try{
 			userId = (Integer) session.save(user);
 		} catch (HibernateException e){
-			e.printStackTrace(); 
-		}
+			 log.error("Failed to save user with id " + user.getId() + ". " + e);
+		} finally {
+	    }
 		return userId;
 	}
 	

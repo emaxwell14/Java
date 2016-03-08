@@ -7,6 +7,7 @@
 	<h1>Title : ${title}</h1>	
 	<h1>Message : ${message}</h1>	
 	<br>
-	<a href="/UserLogin/login">Login Page</a>
+	<a href="${pageContext.request.contextPath}/login">Login Page</a>
+
 </body>
 </html>

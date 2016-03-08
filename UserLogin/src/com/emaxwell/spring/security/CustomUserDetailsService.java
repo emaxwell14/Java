@@ -12,15 +12,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.emaxwell.spring.service.IUserDAO;
-import com.emaxwell.spring.service.UserDAOImpl;
+import com.emaxwell.spring.service.IUserService;
 
 //@Transactional(readOnly=true)
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
-	public IUserDAO userService;
+	public IUserService userService;
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

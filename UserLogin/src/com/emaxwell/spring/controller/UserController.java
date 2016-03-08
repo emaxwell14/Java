@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.emaxwell.domain.User;
-import com.emaxwell.spring.service.IUserDAO;
+import com.emaxwell.spring.service.IUserService;
 
 @Controller
 public class UserController {
 	
 	@Autowired
-	private IUserDAO userDAO;
+	private IUserService userService;
 	
 	@RequestMapping(value = { "/addUser" }, method = RequestMethod.GET)
 	public String addUserPage(@ModelAttribute("user") User user) {
@@ -23,7 +23,7 @@ public class UserController {
 	
 	@RequestMapping(value = { "/addUserSubmit" }, method = RequestMethod.POST)
 	public String addUserSubmit(@ModelAttribute("user") User user) {
-		userDAO.saveUser(user);
+		userService.saveUser(user);
 		return "userCreated";
 	}
 	
