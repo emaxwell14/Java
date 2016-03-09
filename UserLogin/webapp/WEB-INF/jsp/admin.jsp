@@ -15,7 +15,8 @@
 	</c:if>
 	
 	<a href="${pageContext.request.contextPath}/addUser" > Add User Page</a>
-	
-	<a href="<c:url value="/logout" />" >Logout</a>
+	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+  		<input type="submit" value="Logout"/>
+	</form:form>
 </body>
 </html>

@@ -9,12 +9,10 @@
 
 
 	<http use-expressions="true">
-		<intercept-url pattern="/admin**" access="hasAuthority('admin')" />
-<!-- 		<intercept-url pattern="/**" access="hasAuthority('admin')" />  -->
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/index" access="permitAll" />
-		
-		
+        <intercept-url pattern="/**" access="hasAuthority('admin')" />
+	
 		<!--  login-page="/login" -->
 		<form-login 
 		    login-processing-url="/login" 
@@ -23,7 +21,7 @@
 			username-parameter="username"
 			password-parameter="password" />
 			
-		<logout invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
+		<logout logout-success-url="/login"/>
 		
 	</http>
 
