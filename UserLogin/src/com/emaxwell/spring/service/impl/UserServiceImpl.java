@@ -30,8 +30,8 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	@Transactional
-	public int saveUser(User user) {
-		return userDAO.saveUser(user);
+	public void saveUser(User user){
+		userDAO.saveUser(user);
 	}
 
 }

@@ -9,7 +9,7 @@
 <title>Add a User</title>
 </head>
 <body>
-	<form:form method="POST" action="${pageContext.request.contextPath}/addUserSubmit" modelAttribute="user">
+	<form:form method="POST" action="${pageContext.request.contextPath}/addUserSubmit" modelAttribute="userDto">
 		<table>
 			<tr>
 				<td><form:label path="userName">Name</form:label></td>
@@ -17,8 +17,15 @@
 			</tr>
 			<tr>
 				<td><form:label path="password">Password</form:label></td>
-				<td><form:input path="password" /></td>
+				<td><form:input type="password" path="password" /></td>
 			</tr>
+			<tr>
+				<td><form:label path="roleIds">Roles</form:label></td>
+				<td>
+					<form:select path="roleIds"  multiple="true" >
+   						<form:options items="${roleList}" itemValue="id" itemLabel="description" />
+					</form:select>
+				</td>
 			<tr>
 				<td colspan="2"><input type="submit" value="Submit" /></td>
 			</tr>

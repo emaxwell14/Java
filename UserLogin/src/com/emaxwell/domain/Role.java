@@ -11,7 +11,14 @@ import javax.persistence.Table;
 @Table(name = "roles")
 public class Role {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Role(int id){
+		setId(id);
+	}
+	
+	public Role(){
+	}
+	
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "rid")
 	private int id;
 	

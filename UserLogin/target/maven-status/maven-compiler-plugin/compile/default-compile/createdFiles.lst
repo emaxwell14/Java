@@ -1,9 +1,9 @@
 com\emaxwell\spring\service\IUserService.class
 com\emaxwell\spring\dao\impl\UserDAOImpl.class
-com\emaxwell\spring\controller\UserController.class
-com\emaxwell\spring\service\impl\UserServiceImpl.class
 com\emaxwell\spring\security\CustomUserDetailsService.class
 com\emaxwell\util\UserTestUtil.class
-com\emaxwell\spring\dao\IUserDAO.class
 com\emaxwell\spring\controller\HelloController.class
 com\emaxwell\domain\User.class
+com\emaxwell\spring\controller\UserController.class
+com\emaxwell\spring\service\impl\UserServiceImpl.class
+com\emaxwell\spring\dao\IUserDAO.class

@@ -8,6 +8,6 @@ public interface IUserDAO {
 	
 	public User getUser(int userId);
 	
-	public int saveUser(User user);
+	public void saveUser(User user);
 
 }

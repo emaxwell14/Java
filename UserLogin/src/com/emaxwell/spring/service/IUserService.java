@@ -8,5 +8,5 @@ public interface IUserService {
 	
 	public User getUser(int userId);
 	
-	public int saveUser(User user);
+	public void saveUser(User user);
 }

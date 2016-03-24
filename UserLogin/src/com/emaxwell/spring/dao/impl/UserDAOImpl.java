@@ -21,7 +21,7 @@ import com.emaxwell.spring.dao.IUserDAO;
  *
  */
 @Service
-public class UserDAOImpl implements IUserDAO {
+public class UserDAOImpl implements IUserDAO{
 
 	Log log = LogFactory.getLog(this.getClass());
 	
@@ -73,16 +73,14 @@ public class UserDAOImpl implements IUserDAO {
 	 * @return
 	 */
 	@Override
-	public int saveUser(User user) {
+	public void saveUser(User user) {
 		Session session = sessionFactory.getCurrentSession();
-		int userId = 0;
 		try{
-			userId = (Integer) session.save(user);
+			session.saveOrUpdate(user);
 		} catch (HibernateException e){
 			 log.error("Failed to save user with id " + user.getId() + ". " + e);
 		} finally {
 	    }
-		return userId;
 	}
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
