@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,21 +23,22 @@ import com.emaxwell.spring.service.IUserService;
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 	
+	Log log = LogFactory.getLog(this.getClass());
+	
 	@Autowired
 	public IUserService userService;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-/*
-		if (account == null) {
-			throw new UsernameNotFoundException("No such user: " + username);
-		} else if (account.getRoles().isEmpty()) {
-			throw new UsernameNotFoundException("User " + username + " has no authorities");
-		}
-*/
+
 		// Get user from db
 		com.emaxwell.domain.User user  = userService.getUserByUserName(userName);
+		
+		if (user == null) {
+			log.info("Error logging in with username: " + userName);
+	        throw new UsernameNotFoundException("User not found.");
+	    }
 		
 		// Get roles
 		Collection<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();

@@ -17,12 +17,12 @@
 		<form-login 
 		    login-processing-url="/login" 
 		    default-target-url="/admin"
-			authentication-failure-url="/login?login_error" 
+			authentication-failure-url="/login?error" 
 			username-parameter="username"
 			password-parameter="password" />
 			
 		<logout logout-success-url="/login"/>
-		
+		<access-denied-handler error-page="/accessDenied"/>
 	</http>
 
 	<authentication-manager>
