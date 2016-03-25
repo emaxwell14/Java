@@ -10,5 +10,10 @@ public class LoginController {
      public String accessDenied() {
            return "accessDenied";
       }
+	 
+	 @RequestMapping(value = "/sessionTimeout")
+     public String sessionTimeout() {
+           return "sessionTimeout";
+      }
 
 }

@@ -12,16 +12,17 @@
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/index" access="permitAll" />
         <intercept-url pattern="/**" access="hasAuthority('admin')" />
-	
+		<session-management invalid-session-url="/sessionTimeout"/>
 		<!--  login-page="/login" -->
 		<form-login 
 		    login-processing-url="/login" 
 		    default-target-url="/admin"
-			authentication-failure-url="/login?error" 
+			authentication-failure-url="/login?error"
+
 			username-parameter="username"
 			password-parameter="password" />
-			
-		<logout logout-success-url="/login"/>
+		<!-- Removed from form-login 	authentication-failure-handler-ref="authenticationFailureHandler" -->	
+		<logout delete-cookies="JSESSIONID" logout-success-url="/login"/>
 		<access-denied-handler error-page="/accessDenied"/>
 	</http>
 

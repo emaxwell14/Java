@@ -37,14 +37,14 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		if (user == null) {
 			log.info("Error logging in with username: " + userName);
-	        throw new UsernameNotFoundException("User not found.");
+	        throw new UsernameNotFoundException(userName, new UsernameNotFoundException("User not found"));
 	    }
 		
 		// Get roles
 		Collection<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 		
 		roles = (Collection<GrantedAuthority>) getAuthorities(user.getRoles());
-		
+
 		return new User(user.getUserName(), user.getPassword(), roles);
 	}
 
